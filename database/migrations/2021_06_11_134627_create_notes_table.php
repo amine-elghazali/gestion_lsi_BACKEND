@@ -17,10 +17,10 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->integer('note');
             $table->integer('etudiant_id')->unsigned();
-            $table->integer('module_id')->unsigned();
+            $table->string('module')->nullable();
             
             $table->foreign('etudiant_id')->references('id')->on('etudiants')->onDelete('cascade');
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('module')->references('nom')->on('modules')->onDelete('cascade');
 
             $table->timestamps();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Professeur;
 
+use App\Models\Note;
 use App\Models\Etudiant;
 use App\Models\Module;
 use App\Http\Resources\EtudiantResource;
@@ -19,15 +20,16 @@ class ModuleController extends Controller
 
    public function getNoteByEtudiant($id){
         
+        
         $notes = Etudiant::find($id)->notes;
 
         return $notes;
    }
 
-    public function getNoteByModule($id){
-        
-    $notes = Module::find($id)->notes;
+    public function getNoteByModule($nom_module){
 
-    return $notes;
-}
+         $notes = Note::all()->where('module',$nom_module);
+         
+        return $notes;
+    }
 }

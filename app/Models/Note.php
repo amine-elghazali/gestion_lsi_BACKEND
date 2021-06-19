@@ -13,6 +13,8 @@ class Note extends Model
     protected $table= "notes";
     use HasFactory;
 
+    protected $fillable = ['note'];
+
     public function etudiants()
     {
          return $this->belongsTo(Etudiant::class);
