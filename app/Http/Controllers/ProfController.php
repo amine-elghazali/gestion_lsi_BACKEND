@@ -9,9 +9,10 @@ use App\Models\Note;
 
 class ProfController extends Controller
 {
-    public function index ()
+    public function getProf ()
      {
-        return Professeur::all();
+        $profs = Professeur::get();
+        return $profs;
      }
 
      public function getOneProf($id){
@@ -19,7 +20,7 @@ class ProfController extends Controller
      }
 
      public function store(){
-        // Validation : 
+        // Validation :
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
@@ -27,7 +28,7 @@ class ProfController extends Controller
         ]);
 
 
-        // Adding : 
+        // Adding :
         return Professeur::create([
             'nom' => request ('nom'),
             'prenom' =>request('prenom'),
@@ -37,15 +38,15 @@ class ProfController extends Controller
      }
 
      public function update(Professeur $professeur){
-         
-        // Validation : 
+
+        // Validation :
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required',
         ]);
 
-        // Updating data : 
+        // Updating data :
         $success = $professeur->update([
             'nom' => request ('nom'),
             'prenom' =>request('prenom'),
@@ -66,22 +67,22 @@ class ProfController extends Controller
 
 
 
-     
-     // Prof ajoute Les notes aux etudiants  : 
+
+     // Prof ajoute Les notes aux etudiants  :
 
     public function updateNote($id,$nom_module){
-         // This is just to make sure that I'm having the exact data that I want 
+         // This is just to make sure that I'm having the exact data that I want
             //$note_etd=Note::where( ['etudiant_id' => $id,'module' => $nom_module])
 
            //dd($note_etd);
 
-           
+
 
         request()->validate([
             'note' => 'required'
         ]);
 
-        // Updating : 
+        // Updating :
         $success =  Note::where(
             ['etudiant_id' => $id,
             'module' => $nom_module]

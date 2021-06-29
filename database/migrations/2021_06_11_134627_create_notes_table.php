@@ -18,9 +18,9 @@ class CreateNotesTable extends Migration
             $table->integer('note');
             $table->integer('etudiant_id')->unsigned();
             $table->string('module')->nullable();
-            
+
             $table->foreign('etudiant_id')->references('id')->on('etudiants')->onDelete('cascade');
-            $table->foreign('module')->references('nom')->on('modules')->onDelete('cascade');
+            $table->foreign('module')->references('nom')->on('modules')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
 

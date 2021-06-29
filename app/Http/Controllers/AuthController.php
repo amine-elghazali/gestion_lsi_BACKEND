@@ -65,14 +65,15 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password)]
                 ));
 
-                
+
                 Professeur::create([
                     'nom' => $request->input('nom'),
-                    'prenom'=>$request['email'],
+                    'prenom'=>$request->input('prenom'),
                     'email' => $request->input('email'),
+                    'user_id' => $user->id,
                 ]);
-                
-        
+
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -97,14 +98,15 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password)]
                 ));
 
-                
+
                 Etudiant::create([
                     'nom' => $request->input('nom'),
-                    'prenom'=>$request['email'],
+                    'prenom'=>$request->input('prenom'),
                     'email' => $request->input('email'),
+                    'user_id' => $user->id,
                 ]);
-                
-        
+
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user

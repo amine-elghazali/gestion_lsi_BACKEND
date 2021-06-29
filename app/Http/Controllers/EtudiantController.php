@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
 {
-     public function index ()
+     public function getEtudiants ()
      {
-        return Etudiant::all();
+        $etudiants = Etudiant::all();
+        return $etudiants;
      }
 
      public function getOneEtd($id){
@@ -18,7 +19,7 @@ class EtudiantController extends Controller
      }
 
      public function store(){
-        // Validation : 
+        // Validation :
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
@@ -26,7 +27,7 @@ class EtudiantController extends Controller
         ]);
 
 
-        // Adding : 
+        // Adding :
         return Etudiant::create([
             'nom' => request ('nom'),
             'prenom' =>request('prenom'),
@@ -36,15 +37,15 @@ class EtudiantController extends Controller
      }
 
      public function update(Etudiant $etudiant){
-         
-        // Validation : 
+
+        // Validation :
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required',
         ]);
 
-        // Updating data : 
+        // Updating data :
         $success = $etudiant->update([
             'nom' => request ('nom'),
             'prenom' =>request('prenom'),

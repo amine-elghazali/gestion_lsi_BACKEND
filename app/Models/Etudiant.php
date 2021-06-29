@@ -13,8 +13,8 @@ class Etudiant extends Model
 
 
      protected $primaryKey='id';
-    
-    protected $fillable=['nom','prenom','email'];
+
+    protected $fillable=['nom','prenom','email','user_id'];
 
     public function notes()
      {

@@ -14,12 +14,11 @@ class CreateModulesTable extends Migration
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nom')->unique();
             $table->timestamps();
-            $table->string('professeur_nom')->nullable();
             
-            $table->foreign('professeur_nom')->references('nom')->on('professeurs')->onDelete('cascade');
+
         });
     }
 
